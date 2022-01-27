@@ -1,0 +1,132 @@
+
+
+% Problema 1:
+%   
+%Aplicar el metodo de regula falsi para hallar la aproximación de la raíz de 
+%la ecuación e.^(3*x)-4 en el intervalo[0,1] con error de e=0.001.
+% 
+clc
+fprintf("METODO DE REGULA FALSI\n");
+fprintf("PROBLEMA 1\n");
+fprintf('\n')
+
+f = @(x) e.^(3*x)-4;
+a = 0;
+b = 1;
+
+
+try 
+  [x1, date, iter] = regula_falsi(f,a,b);
+  fprintf('El valor de corte es y=%d, el número de iteraciones es %d\n',x1,iter);
+  
+  h=figure(1);
+  hold on;
+  x = -10:0.1:10;
+  
+  plot (x, f(x), "linewidth", 4)
+  plot(x1,0, 'k*');
+  text (x1+0.1, 1, "raiz");
+  
+  legend ("f(x)");
+  xlabel ("x");
+  ylabel ("f(x)");
+  
+  set(gca, "linewidth", 3, "fontsize", 12)
+  set(gca, "xaxislocation", "origin")
+  set(gca, "yaxislocation", "origin");
+  set(gca, "box", "on")
+  
+  [n,m] = size(date)
+  fprintf("%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n","Iter","a","b","c","f(a)","f(b)","f(c)","fa*fc","error");
+  for i=1:n
+    fprintf('%d\t',i);
+    for j=1:m
+      fprintf('%.4f\t',date(i,j));
+    endfor
+    fprintf('\n');
+  endfor
+  
+
+catch err
+  fprintf('Error: %s\n',err.message);
+ 
+end
+
+hold off;
+
+
+x1 = 0;
+
+tic;
+% Calcula el tiempo de ejecucion desde esta parte
+
+for i = 1:1000000
+    x1 = x1 + 1;
+end
+
+toc;
+% Problema 2:
+%   
+%Aplicar el metodo de regula falsi para hallar la aproximación de la raíz de la ecuación 
+%2*x.^3+x-1 en el intervalo[0,1] con error de e=0.001.
+% 
+
+fprintf('\n')
+fprintf("PROBLEMA 2\n");
+fprintf('\n')
+
+f = @(x) 2*x.^3+x-1;
+a = 0;
+b = 1;
+
+
+try 
+  [x1, date, iter] = regula_falsi(f,a,b);
+  fprintf('El valor de corte es y=%d, el número de iteraciones es %d\n',x1,iter);
+  
+  h=figure(2);
+  hold on;
+  x = -10:0.1:10;
+  
+  plot (x, f(x), "linewidth", 4)
+  plot(x1,0, 'k*');
+  text (x1+0.1, 1, "raiz");
+ 
+  
+  legend ("f(x)");
+  xlabel ("x");
+  ylabel ("f(x)");
+  
+  set(gca, "linewidth", 3, "fontsize", 12)
+  set(gca, "xaxislocation", "origin")
+  set(gca, "yaxislocation", "origin");
+  set(gca, "box", "on")
+  
+  [n,m] = size(date)
+  fprintf("%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n","Iter","a","b","c","f(a)","f(b)","f(c)","fa*fc","error");
+  for i=1:n
+    fprintf('%d\t',i);
+    for j=1:m
+      fprintf('%.4f\t',date(i,j));
+    endfor
+    fprintf('\n');
+  endfor
+  
+
+catch err
+  fprintf('Error: %s\n',err.message);
+ 
+end
+
+hold off;
+
+x1 = 0;
+
+tic;
+% Calcula el tiempo de ejecucion desde esta parte
+
+for i = 1:1000000
+    x1 = x1 + 1;
+end
+
+toc;
